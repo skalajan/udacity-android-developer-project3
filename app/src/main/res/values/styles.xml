@@ -1,9 +1,10 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorSecondaryText</item>
     </style>
 
     <style name="PercentChangeTextStyle">
@@ -19,10 +20,11 @@
     <style name="StockSymbolTextStyle">
         <item name="android:textSize">25sp</item>
         <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/colorSecondaryText</item>
     </style>
 
     <style name="WidgetTheme" parent="AppTheme">
-
+        <item name="android:textColor">@color/colorSecondaryText</item>
     </style>
 
     <style name="WidgetTheme.StockSymbolTextStyle" parent="StockSymbolTextStyle">

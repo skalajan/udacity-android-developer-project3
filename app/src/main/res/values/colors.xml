@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#FF5722</color>
+    <color name="colorPrimaryDark">#E64A19</color>
+    <color name="colorPrimaryLight">#FFCCBC</color>
+    <color name="colorAccent">#03A9F4</color>
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorSecondaryText">#757575</color>
+
 
     <color name="material_blue_500">#2196F3</color>
     <color name="material_red_700">#D50000</color>
@@ -12,7 +16,11 @@
     <color name="widget_background">#ffffff</color>
     <color name="chart_labels">@color/white</color>
     <color name="chart_border">@color/white</color>
+    <color name="chart_background">#d7d7d7</color>
     <color name="chart_circles">@color/material_blue_500</color>
     <color name="chart_fill">#4fc3f7</color>
     <color name="chart_line">@color/white</color>
+
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#BDBDBD</color>
 </resources>
