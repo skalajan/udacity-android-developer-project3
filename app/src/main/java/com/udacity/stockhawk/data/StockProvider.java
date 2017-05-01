@@ -1,5 +1,7 @@
 package com.udacity.stockhawk.data;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,6 +11,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+
+import com.udacity.stockhawk.R;
+import com.udacity.stockhawk.widgets.StocksListWidgetProvider;
 
 
 public class StockProvider extends ContentProvider {
@@ -105,6 +110,7 @@ public class StockProvider extends ContentProvider {
         Context context = getContext();
         if (context != null){
             context.getContentResolver().notifyChange(uri, null);
+            updateListWidgets();
         }
 
         return returnUri;
@@ -144,6 +150,7 @@ public class StockProvider extends ContentProvider {
             Context context = getContext();
             if (context != null){
                 context.getContentResolver().notifyChange(uri, null);
+                updateListWidgets();
             }
         }
 
@@ -186,7 +193,12 @@ public class StockProvider extends ContentProvider {
             default:
                 return super.bulkInsert(uri, values);
         }
+    }
 
-
+    private void updateListWidgets(){
+        ComponentName thisWidget = new ComponentName(getContext(), StocksListWidgetProvider.class);
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getContext());
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.applistwidget_listview);
     }
 }

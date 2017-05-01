@@ -61,7 +61,7 @@ public final class PrefUtils {
         editStockPref(context, symbol, false);
     }
 
-    public static String getDisplayMode(Context context) {
+    public static String  getDisplayMode(Context context) {
         String key = context.getString(R.string.pref_display_mode_key);
         String defaultValue = context.getString(R.string.pref_display_mode_default);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
