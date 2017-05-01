@@ -4,7 +4,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColor">@color/colorSecondaryText</item>
     </style>
 
     <style name="PercentChangeTextStyle">
@@ -15,6 +14,7 @@
 
     <style name="BidPriceTextStyle">
         <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/colorSecondaryText</item>
     </style>
 
     <style name="StockSymbolTextStyle">

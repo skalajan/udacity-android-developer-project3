@@ -7,25 +7,16 @@
     tools:context="com.udacity.stockhawk.ui.StockDetailActivity">
 
     <TextView
-        android:id="@+id/tv_stock_symbol"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="GOOG" />
-
-    <TextView
         android:id="@+id/tv_stock_current_price_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/detail_label_margin_start"
-        android:layout_marginTop="@dimen/detail_label_margin_top"
         android:text="@string/current_price"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_stock_symbol" />
+        tools:layout_editor_absoluteX="32dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp" />
 
     <TextView
         android:id="@+id/tv_stock_price"

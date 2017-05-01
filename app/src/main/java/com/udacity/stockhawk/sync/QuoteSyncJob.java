@@ -77,53 +77,48 @@ public final class QuoteSyncJob {
 
 
                 Stock stock = quotes.get(symbol);
-                StockQuote quote = stock.getQuote();
+                if(stock != null) {
+                    StockQuote quote = stock.getQuote();
 
-                Float price, change, percentChange;
-                price = change = percentChange = null;
+                    Float price, change, percentChange;
+                    price = change = percentChange = null;
 
-                String historyString = "";
+                    String historyString = "";
 
-                try {
-                    price = quote.getPrice().floatValue();
-                    change = quote.getChange().floatValue();
-                    percentChange = quote.getChangeInPercent().floatValue();
-
-
-                    // WARNING! Don't request historical data for a stock that doesn't exist!
-                    // The request will hang forever X_x
-                    List<HistoricalQuote> history = stock.getHistory(from, to, Interval.WEEKLY);
-
-                    StringBuilder historyBuilder = new StringBuilder();
-
-                    for (HistoricalQuote it : history) {
-                        historyBuilder.append(it.getDate().getTimeInMillis());
-                        historyBuilder.append(", ");
-                        historyBuilder.append(it.getClose());
-                        historyBuilder.append("\n");
-                    }
-                    historyString = historyBuilder.toString();
-
-                    ContentValues quoteCV = new ContentValues();
-                    quoteCV.put(Contract.Quote.COLUMN_SYMBOL, symbol);
-                    quoteCV.put(Contract.Quote.COLUMN_PRICE, price);
-                    quoteCV.put(Contract.Quote.COLUMN_PERCENTAGE_CHANGE, percentChange);
-                    quoteCV.put(Contract.Quote.COLUMN_ABSOLUTE_CHANGE, change);
+                    try {
+                        price = quote.getPrice().floatValue();
+                        change = quote.getChange().floatValue();
+                        percentChange = quote.getChangeInPercent().floatValue();
 
 
-                    quoteCV.put(Contract.Quote.COLUMN_HISTORY, historyString);
+                        // WARNING! Don't request historical data for a stock that doesn't exist!
+                        // The request will hang forever X_x
+                        List<HistoricalQuote> history = stock.getHistory(from, to, Interval.WEEKLY);
 
-                    quoteCVs.add(quoteCV);
-                }catch (NullPointerException e){
-                    Timber.w("Could not parse the values of stock, probably not existing");
-                    Handler uiHandler = new Handler(Looper.getMainLooper());
-                    uiHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(context, context.getString(R.string.error_stock_not_found, symbol), Toast.LENGTH_LONG).show();
+                        StringBuilder historyBuilder = new StringBuilder();
+
+                        for (HistoricalQuote it : history) {
+                            historyBuilder.append(it.getDate().getTimeInMillis());
+                            historyBuilder.append(", ");
+                            historyBuilder.append(it.getClose());
+                            historyBuilder.append("\n");
                         }
-                    });
-                    PrefUtils.removeStock(context, symbol);
+                        historyString = historyBuilder.toString();
+
+                        ContentValues quoteCV = new ContentValues();
+                        quoteCV.put(Contract.Quote.COLUMN_SYMBOL, symbol);
+                        quoteCV.put(Contract.Quote.COLUMN_PRICE, price);
+                        quoteCV.put(Contract.Quote.COLUMN_PERCENTAGE_CHANGE, percentChange);
+                        quoteCV.put(Contract.Quote.COLUMN_ABSOLUTE_CHANGE, change);
+
+                        quoteCV.put(Contract.Quote.COLUMN_HISTORY, historyString);
+
+                        quoteCVs.add(quoteCV);
+                    } catch (NullPointerException e) {
+                        stockDoesNotExist(symbol, context);
+                    }
+                }else{
+                    stockDoesNotExist(symbol, context);
                 }
             }
 
@@ -138,6 +133,18 @@ public final class QuoteSyncJob {
         } catch (IOException exception) {
             Timber.e(exception, "Error fetching stock quotes");
         }
+    }
+
+    private static void stockDoesNotExist(final String symbol, final Context context) {
+        Timber.w("Could not parse the values of stock, probably not existing");
+        Handler uiHandler = new Handler(Looper.getMainLooper());
+        uiHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(context, context.getString(R.string.error_stock_not_found, symbol), Toast.LENGTH_LONG).show();
+            }
+        });
+        PrefUtils.removeStock(context, symbol);
     }
 
     private static void schedulePeriodic(Context context) {

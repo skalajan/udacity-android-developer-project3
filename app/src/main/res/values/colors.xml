@@ -14,12 +14,14 @@
     <color name="white">#ffffff</color>
 
     <color name="widget_background">#ffffff</color>
-    <color name="chart_labels">@color/white</color>
+    <color name="chart_labels">@color/colorSecondaryText</color>
     <color name="chart_border">@color/white</color>
-    <color name="chart_background">#d7d7d7</color>
+    <color name="chart_background">#e0e0e0</color>
     <color name="chart_circles">@color/material_blue_500</color>
     <color name="chart_fill">#4fc3f7</color>
     <color name="chart_line">@color/white</color>
+    <color name="chart_grid_color">#ffffff</color>
+
 
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>

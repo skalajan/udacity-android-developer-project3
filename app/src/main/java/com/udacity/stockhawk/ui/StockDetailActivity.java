@@ -33,9 +33,6 @@ import butterknife.ButterKnife;
 import timber.log.Timber;
 
 public class StockDetailActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
-    @BindView(R.id.tv_stock_symbol)
-    protected TextView mStockNameTextView;
-
     @BindView(R.id.tv_stock_price)
     protected TextView mStockPriceTextView;
 
@@ -60,7 +57,7 @@ public class StockDetailActivity extends AppCompatActivity implements LoaderMana
         ButterKnife.bind(this);
 
         mStockSymbol = getIntent().getStringExtra(Constants.STOCK_SYMBOL_EXTRA);
-        mStockNameTextView.setText(mStockSymbol);
+        setTitle(mStockSymbol);
         getSupportLoaderManager().initLoader(STOCK_LOADER, null, this);
     }
 
@@ -136,24 +133,34 @@ public class StockDetailActivity extends AppCompatActivity implements LoaderMana
         dataSet.setDrawFilled(true);
         chart.getLegend().setEnabled(false);
 
-
-
         XAxis xAxis = chart.getXAxis();
         xAxis.setValueFormatter(new ChartDateFormatter(beginingTimestamp));
-        xAxis.setLabelCount(6, false);
-        xAxis.setLabelRotationAngle(-45);
+        xAxis.setLabelCount(5, false);
+        xAxis.setLabelRotationAngle(-65);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setTextColor(getResources().getColor(R.color.chart_labels));
-        xAxis.setDrawGridLines(false);
+        xAxis.setTextSize(getResources().getDimension(R.dimen.chart_label_text_size));
+        xAxis.setDrawGridLines(true);
+        xAxis.setGridColor(getResources().getColor(R.color.chart_grid_color));
 
         LineData data = new LineData(dataSet);
 
         YAxis axisLeft = chart.getAxisLeft();
         axisLeft.setTextColor(getResources().getColor(R.color.chart_labels));
         axisLeft.setValueFormatter(new DollarAxisValueFormatter());
+        axisLeft.setGridColor(getResources().getColor(R.color.chart_grid_color));
+        axisLeft.setTextSize(getResources().getDimension(R.dimen.chart_label_text_size));
 
-        chart.getAxisRight().setDrawLabels(false);
+
+        YAxis axisRight = chart.getAxisRight();
+        axisRight.setDrawLabels(false);
+        axisRight.setGridColor(getResources().getColor(R.color.chart_grid_color));
+        axisRight.setTextSize(getResources().getDimension(R.dimen.chart_label_text_size));
+
         chart.getDescription().setEnabled(false);
+
+        chart.setGridBackgroundColor(getResources().getColor(R.color.chart_background));
+        chart.setDrawGridBackground(true);
 
         chart.setData(data);
     }

@@ -12,4 +12,5 @@
     <dimen name="stock_change_box_padding">8dp</dimen>
     <dimen name="detail_label_margin_start">32dp</dimen>
     <dimen name="detail_label_margin_top">24dp</dimen>
+    <dimen name="chart_label_text_size">9dp</dimen>
 </resources>
