@@ -1,11 +1,11 @@
-# Stock Hawk
+# Stack Hawk - Udacity Android Developer Nanodegree Project 3
+Implementation of Stack Hawk for Android Developer Udacity Nanodegree Course.
 
-This is the starter code for project 3 in Udacity's [Android Developer Nanodegree](https://www.udacity.com/course/android-developer-nanodegree-by-google--nd801). 
+# You should not use any of my code inside your Udacity project submission
+It would violate the terms of the Udacity and could lead to your ejection from the classes without any refund - read the terms carefully
 
-Check out Udacity's [Advanced Android App Development](https://www.udacity.com/course/advanced-android-app-development--ud855) course to get the skills you'll need to complete this project!
+https://www.udacity.com/legal/community-guidelines
 
-If you're a Nanodegree student check your work againt the project [rubric](https://review.udacity.com/#!/rubrics/140/view), then click [here](https://classroom.udacity.com/nanodegrees/nd801/parts/8011345406/project) to submit your project.
+## It's completely fine to use this code as inspiration and/or to help you with any issues you run into with your own project
 
-# Contrubuting
-
-Pull requests gratefully accepted.
+## Good luck and have fun
